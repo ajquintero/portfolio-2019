@@ -71,8 +71,8 @@ const Project = ({ data: { mdx: postNode }, location }) => {
               <div>{project.client}</div>
             </InfoBlock>
             <InfoBlock customcolor={project.color}>
-              <div>Date</div>
-              <div>{project.date}</div>
+              <div>Team Members</div>
+              <div>{project.teamMembers}</div>
             </InfoBlock>
             <InfoBlock customcolor={project.color}>
               <div>Service</div>
@@ -117,8 +117,8 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
-        date(formatString: "DD.MM.YYYY")
-        client
+        teamMembers
+        languages
         color
         service
         cover {

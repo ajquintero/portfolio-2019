@@ -98,7 +98,7 @@ const ProjectItem = ({ node, style, testid }) => (
       <Link to={node.fields.slug}>
         <TracedGlow src={node.frontmatter.cover.childImageSharp.fluid.tracedSVG} alt="" />
         <Overlay style={{ backgroundColor: node.frontmatter.color }} />
-        <h2>{node.frontmatter.client}</h2>
+        <h2>{node.frontmatter.languages}</h2>
         <Service>{node.frontmatter.service}</Service>
       </Link>
     </Content>

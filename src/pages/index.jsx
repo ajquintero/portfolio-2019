@@ -18,20 +18,39 @@ const Index = ({
   },
   location,
 }) => {
-  const trail = useTrail(projectEdges.length, {
+  let devProjectEdges = projectEdges.filter(project => project.node.frontmatter.projectType === 'dev');
+  let designProjectEdges = projectEdges.filter(project => project.node.frontmatter.projectType === 'design');
+  const devTrail = useTrail(devProjectEdges.length, {
+    from: { height: '0%' },
+    to: { height: '100%' },
+  })
+  const designTrail = useTrail(designProjectEdges.length, {
     from: { height: '0%' },
     to: { height: '100%' },
   })
 
+
   return (
     <Layout pathname={location.pathname}>
+      <h2>Dev Projects</h2>
       <ListWrapper>
-        {trail.map((style, index) => (
+        {devTrail.map((style, index) => (
           <ProjectItem
             testid={`projectItem-${index}`}
             style={style}
-            key={projectEdges[index].node.fields.slug}
-            node={projectEdges[index].node}
+            key={devProjectEdges[index].node.fields.slug}
+            node={devProjectEdges[index].node}
+          />
+        ))}
+      </ListWrapper>
+      <h2>Design Projects</h2>
+      <ListWrapper>
+        {designTrail.map((style, index) => (
+          <ProjectItem
+            testid={`projectItem-${index}`}
+            style={style}
+            key={designProjectEdges[index].node.fields.slug}
+            node={designProjectEdges[index].node}
           />
         ))}
       </ListWrapper>
@@ -66,6 +85,7 @@ export const pageQuery = graphql`
             color
             languages
             teamMembers
+            projectType
             cover {
               childImageSharp {
                 fluid(maxWidth: 850, quality: 90, traceSVG: { color: "#f3f3f3" }) {

@@ -118,6 +118,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         teamMembers
+        projectType
         languages
         color
         service
